@@ -92,7 +92,7 @@ public class Main {
 
         System.out.println("Finding average");
         double sum = 0, average;
-        String cont;
+        String cont = "yes";
         int rounds = 0;
 
         try {
@@ -478,26 +478,35 @@ public class Main {
 
         do {
             System.out.println("enter a number");
-            number = input.nextInt();
+            try {
+                number = input.nextInt();
 
-            if (firstRun) {
-                largest = number;
-                smallest = number;
-                firstRun = false;
+                if (firstRun) {
+                    largest = number;
+                    smallest = number;
+                    firstRun = false;
+                }
+
+                if (number > largest) {
+                    largest = number;
+                }
+
+                if (number < smallest) {
+                    smallest = number;
+                }
+
+                System.out.println("continue? yes/no");
+                input.nextLine();
+                cont = input.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("This is not a number, try again ...");
+            } catch (Exception e) {
+                System.out.println("An error occurred . . .");
+                System.out.println(e.getMessage());
+            } finally {
+                input.nextLine();
             }
-
-            if (number > largest) {
-                largest = number;
-            }
-
-            if (number < smallest) {
-                smallest = number;
-            }
-
-            System.out.println("continue? yes/no");
-            input.nextLine();
-            cont = input.nextLine();
-        } while (cont.equals("yes"));
+        } while (cont.equals("yes")); // trying try inside loop, it needs initializing the cont variable
 
         System.out.println("the largest number is " + largest);
         System.out.println("the smallest number is " + smallest);
