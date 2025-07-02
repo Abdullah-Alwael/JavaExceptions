@@ -9,7 +9,7 @@ public class Main {
 //        1. Write a Java program to print the sum (addition), multiply, subtract, divide and remainder of
 //        two numbers , takes two numbers as input
 
-        int number1, number2; //define two integer variables
+        int number, number1, number2, number3; //define two integer variables
 
         System.out.println("Calculator:");
         try {
@@ -41,7 +41,7 @@ public class Main {
 //        2. Write a Java program that takes a number as input and prints its multiplication table up to
 //        10.
 
-        int number;
+
 
         System.out.println("Multiplication table");
 
@@ -124,6 +124,8 @@ public class Main {
 //            together, and then determines whether the sum is equal to the third integer.
 
             System.out.println("find equal third:");
+
+        try {
             System.out.println("enter first number: ");
             number1 = input.nextInt();
 
@@ -131,13 +133,24 @@ public class Main {
             number2 = input.nextInt();
 
             System.out.println("enter third number: ");
-            int number3 = input.nextInt();
+            number3 = input.nextInt();
 
             if ((number1+number2) == number3){
                 System.out.println("they are equal");
             } else {
-                System.out.println("they are not equal");
+                throw new ArithmeticException("they are not equal"); // using throw instead of println();
             }
+        } catch (InputMismatchException e){
+            System.out.println("This is not a number");
+        } catch (ArithmeticException e){
+            System.out.println(e.getMessage());
+        } catch (Exception e){
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine(); // flush the input
+        }
+
 
 //        6. Write a Java program to reverse a word.
 
