@@ -209,9 +209,9 @@ public class Main {
 
         try {
             isEven(number); // throws the answer
-        } catch (ArithmeticException e){ // gets the answer
+        } catch (ArithmeticException e) { // gets the answer
             System.out.println(e.getMessage());
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("An error occurred . . .");
         }
 
@@ -226,9 +226,9 @@ public class Main {
 
             System.out.println("the temperature converted to fahrenheit is: " + (centigrade * 1.8f + 32));
 
-        }catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("This is not a number");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("An error occurred . . .");
             System.out.println(e.getMessage());
         } finally {
@@ -241,23 +241,23 @@ public class Main {
         String sentence;
         try {
             System.out.println("enter a sentence:");
-             sentence = input.nextLine();
+            sentence = input.nextLine();
 
             System.out.println("enter index number: ");
             int index = input.nextInt(); // after this one, flush
 
-            if (index < 0){
+            if (index < 0) {
                 throw new ArithmeticException("Index can not be less than zero (<0)");
             }
             System.out.println("the character at index " + index + " is " + sentence.charAt(index));
 
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("This is not a number");
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             System.out.println(e.getMessage());
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             System.out.println("The index is more than the length of the sentence (out of bound)");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("An error occurred . . .");
             System.out.println(e.getMessage());
         } finally {
@@ -283,9 +283,9 @@ public class Main {
             perimeter = 2 * (width + height);
             System.out.println("perimeter is = " + perimeter);
 
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("This is not a number");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("An error occurred . . .");
             System.out.println(e.getMessage());
         } finally {
@@ -296,38 +296,64 @@ public class Main {
 //        11. Write a Java program to compare two numbers.
         System.out.println("compare two numbers helper: ");
 
-        System.out.println("enter first number:");
-        number1 = input.nextInt();
+        try {
+            System.out.println("enter first number:");
+            number1 = input.nextInt();
 
-        System.out.println("enter second number:");
-        number2 = input.nextInt();
+            System.out.println("enter second number:");
+            number2 = input.nextInt();
 
-        if (number1 != number2) {
-            System.out.println(number1 + " != " + number2);
-        } else {
-            System.out.println(number1 + " = " + number2);
+            if (number1 != number2) {
+                System.out.println(number1 + " != " + number2);
+            } else {
+                System.out.println(number1 + " = " + number2);
+            }
+            if (number1 < number2) {
+                System.out.println(number1 + " < " + number2);
+            } else {
+                System.out.println(number1 + " >= " + number2);
+            }
+            if (number1 <= number2) {
+                System.out.println(number1 + " <= " + number2);
+            } else {
+                System.out.println(number1 + " > " + number2);
+            }
+
+        } catch (InputMismatchException e) {
+            System.out.println("This is not a number, try again later ...");
+        } catch (Exception e) {
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine();
         }
-        if (number1 < number2) {
-            System.out.println(number1 + " < " + number2);
-        } else {
-            System.out.println(number1 + " >= " + number2);
-        }
-        if (number1 <= number2) {
-            System.out.println(number1 + " <= " + number2);
-        } else {
-            System.out.println(number1 + " > " + number2);
-        }
+
 
 //        12. Write a Java program to convert seconds to hours, minutes and seconds.
         System.out.println("seconds calculator:");
-        System.out.println("enter the number of seconds to convert to hours, minutes and remaining seconds ");
-        int seconds = input.nextInt();
-        int hours = seconds / 3600; // correct calculation
-        seconds -= hours * 3600;
-        int minutes = (seconds / 60); // needs to factor out the hours first, correct calculation
-        seconds -= minutes * 60; // needs to factor out the minutes, correct calculation
+        int initialSeconds, seconds, minutes, hours;
+        try {
+            System.out.println("enter the number of seconds to convert to hours, minutes and remaining seconds ");
+            initialSeconds = input.nextInt();
+            seconds = initialSeconds;
 
-        System.out.println("it is = " + hours + " hours and " + minutes + " minutes and " + seconds);
+            hours = seconds / 3600; // correct calculation
+            seconds -= hours * 3600;
+            minutes = (seconds / 60); // needs to factor out the hours first, correct calculation
+            seconds -= minutes * 60; // needs to factor out the minutes, correct calculation
+
+            System.out.println(initialSeconds + " seconds is = " +
+                    hours + " hours and " +
+                    minutes + " minutes and " + seconds);
+
+        } catch (InputMismatchException e) {
+            System.out.println("This is not a number, try again later ...");
+        } catch (Exception e) {
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine();
+        }
 
 //        13. Write a Java program that accepts four integers from the user and prints equal if all
 //        four are equal, and not equal otherwise.
@@ -469,7 +495,8 @@ public class Main {
 
         System.out.println("the number of 'a' in the sentence is " + numberOfA);
     }
-    public static void isEven(int number) throws ArithmeticException{
+
+    public static void isEven(int number) throws ArithmeticException {
         if (number % 2 == 0) {
             throw new ArithmeticException(number + " is even");
         } else {
