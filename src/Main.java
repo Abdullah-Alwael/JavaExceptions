@@ -392,16 +392,7 @@ public class Main {
 //        positive
 
         System.out.println("finding number sign");
-        System.out.println("enter a number: ");
-        number = input.nextInt();
-
-        if (number == 0) {
-            System.out.println("number is zero");
-        } else if (number > 0) {
-            System.out.println("number is positive");
-        } else {
-            System.out.println("number is negative");
-        }
+        numberSign(); // that is all needed.
 
 //        15.Write a program to enter the numbers till the user wants and at the end it
 //        should display the count of positive, negative and zeros entered (End loop use -1 ,
@@ -511,5 +502,33 @@ public class Main {
         } else {
             throw new ArithmeticException(number + " is odd");
         }
+    }
+
+    //Q14, self handling method (throw without throws)
+    public static void numberSign() {
+        Scanner input = new Scanner(System.in);
+        int number;
+        try {
+            System.out.println("enter a number: ");
+            number = input.nextInt();
+
+            if (number == 0) {
+                throw new ArithmeticException("number is zero");
+            } else if (number > 0) {
+                throw new ArithmeticException("number is positive");
+            } else {
+                throw new ArithmeticException("number is negative");
+            }
+
+        } catch (InputMismatchException e) {
+            System.out.println("This is not a number, try again later ...");
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage()); // print the message here
+        } catch (Exception e) {
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } // no finally required as the object (input) is local to the method, hence will be destroyed once it finishes
+        // by the Java Garbage Collector
+
     }
 }

@@ -21,9 +21,9 @@ public class Temp {
         }catch (Exception e){
             System.out.println(e.getMessage());
         } finally {
-            finally{
-                System.out.println("Not possible without a try block");
-            }
+//            finally{
+//                System.out.println("Not possible without a try block");
+//            }
             System.out.println("Try and catch inside finally block");
 
             try{
