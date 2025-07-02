@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
@@ -155,14 +156,27 @@ public class Main {
 //        6. Write a Java program to reverse a word.
 
         System.out.println("word reverse program:");
-        System.out.println("enter a word to reverse");
-        input.nextLine();
-        String word = input.nextLine();
+        try{
+            System.out.println("enter a word to reverse");
+            String word = input.nextLine();
 
-        System.out.println("the reverse is: ");
-        for (int i = word.length()-1; i >= 0; i--) {
-            System.out.print(word.toCharArray()[i]);
+            System.out.println("the reverse is: ");
+            for (int i = word.length()-1; i >= 0; i--) {
+                System.out.print(word.toCharArray()[i]);
+            }
+        } catch (NoSuchElementException e){
+            System.out.println("Enter a valid word");
+            System.out.println(e.getMessage());
+        }  catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Out of bound!");
+            System.out.println(e.getMessage());
+        } catch (Exception e){
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine();
         }
+
 
 //        7 - Java program to check whether the given number is even or odd
         System.out.println();
