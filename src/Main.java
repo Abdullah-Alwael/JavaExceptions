@@ -435,26 +435,39 @@ public class Main {
 //        16 - Write a program that prompts the user to input an integer and then outputs the
 //        number with the digits reversed.
         System.out.println("reverse number finder:");
-        System.out.println("enter an integer number:");
-        number = input.nextInt();
 
-        StringBuilder reverseNumber = new StringBuilder(String.valueOf(number));
+        try {
 
-        System.out.println("The reverse is " + reverseNumber.reverse());
+            System.out.println("enter an integer number:");
+            number = input.nextInt();
 
-        // second solution to Q16:
+            StringBuilder reverseNumber = new StringBuilder(String.valueOf(number));
 
-        System.out.println("------Using second solution:");
-        double numberTemp;
+            System.out.println("The reverse is " + reverseNumber.reverse());
 
-        do {
-            numberTemp = (double) number / 10;
-            number /= 10;
-            numberTemp -= number;
-            numberTemp *= 10;
-            System.out.print(Math.round(numberTemp));
-        } while (number != 0);
-        System.out.println();
+            // second solution to Q16:
+
+            System.out.println("------Using second solution:");
+            double numberTemp;
+
+            do {
+                numberTemp = (double) number / 10;
+                number /= 10;
+                numberTemp -= number;
+                numberTemp *= 10;
+                System.out.print(Math.round(numberTemp));
+            } while (number != 0);
+            System.out.println();
+
+        } catch (InputMismatchException e) {
+            System.out.println("This is not a number, try again later ...");
+        } catch (Exception e) {
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine();
+        }
+
 
 //        17 - Write a program to enter the numbers till the user wants and at the end the
 //        program should display the largest and smallest numbers entered.
