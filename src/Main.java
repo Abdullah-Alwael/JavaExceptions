@@ -1,27 +1,42 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-
+//TODO add try catch to all Questions, if else use throw throws
 //        1. Write a Java program to print the sum (addition), multiply, subtract, divide and remainder of
 //        two numbers , takes two numbers as input
 
         int number1, number2; //define two integer variables
 
         System.out.println("Calculator:");
-        System.out.println("enter first number: ");
-        number1 = input.nextInt();
+        try {
+            System.out.println("enter first number: ");
+            number1 = input.nextInt();
 
-        System.out.println("enter second number (>0)"); // can not divide by 0!
-        number2 = input.nextInt();
+            System.out.println("enter second number (>0)"); // can not divide by 0!
+            number2 = input.nextInt();
 
-        System.out.println(number1 +" + "+number2 + " = " + (number1+number2));
-        System.out.println(number1 +" - "+number2 + " = " + (number1 - number2));
-        System.out.println(number1 +" * "+number2 + " = " + (number1 * number2));
-        System.out.println(number1 +" / "+number2 + " = " + (number1/number2));
-        System.out.println(number1 +" mod "+number2 + " = " + (number1%number2));
+            System.out.println(number1 + " + " + number2 + " = " + (number1 + number2));
+            System.out.println(number1 + " - " + number2 + " = " + (number1 - number2));
+            System.out.println(number1 + " * " + number2 + " = " + (number1 * number2));
+            System.out.println(number1 + " / " + number2 + " = " + (number1 / number2));
+            System.out.println(number1 + " mod " + number2 + " = " + (number1 % number2));
+
+        } catch (InputMismatchException e) {
+            System.out.println("This is not a number, try again...");
+        } catch (ArithmeticException e){
+            System.out.println("Cannot divide by zero (0)");
+        }catch (Exception e){
+            System.out.println("An error occurred");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine(); // since input.nextInt() does not take the entire line EOL \n, if an exception occurs,
+            // it will daisy-chain to the next input.nextInt(); and hence we need to flush it here!
+        }
+
 
 //        2. Write a Java program that takes a number as input and prints its multiplication table up to
 //        10.
@@ -30,11 +45,20 @@ public class Main {
 
         System.out.println("Multiplication table");
 
-        System.out.println("enter a number to create a table: ");
-        number = input.nextInt();
+        try {
+            System.out.println("enter a number to create a table: ");
+            number = input.nextInt();
 
-        for (int i = 1; i <= 10; i++) {
-            System.out.println(number+" x "+i + " = " + (number*i));
+            for (int i = 1; i <= 10; i++) {
+                System.out.println(number+" x "+i + " = " + (number*i));
+            }
+        } catch (InputMismatchException e){
+            System.out.println("This is not a number");
+        } catch (Exception e){
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine(); // flush the input
         }
 
 //        3. Write a Java program to print the area and perimeter of a circle
@@ -42,14 +66,25 @@ public class Main {
 
         double radius, perimeter, area; // define 3 variables
 
-        System.out.println("enter the radius of a circle: ");
-        radius = input.nextDouble();
+        try{
+            System.out.println("enter the radius of a circle: ");
+            radius = input.nextDouble();
 
-        perimeter = 2*Math.PI*radius;
-        System.out.println("perimeter is: "+ perimeter);
+            perimeter = 2*Math.PI*radius;
+            System.out.println("perimeter is: "+ perimeter);
 
-        area = Math.PI*radius*radius;
-        System.out.println("area is: "+ area);
+            area = Math.PI*radius*radius;
+            System.out.println("area is: "+ area);
+
+        } catch (InputMismatchException e){
+            System.out.println("This is not a number");
+        } catch (Exception e){
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine(); // flush the input
+        }
+
 
 //        4. Java program to find out the average of a set of integers
 
