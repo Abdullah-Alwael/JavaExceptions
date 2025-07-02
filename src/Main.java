@@ -5,12 +5,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        int number, number1, number2, number3; //define two integer variables
+        float centigrade;
 
 //TODO add try catch to all Questions, if else use throw throws
+
 //        1. Write a Java program to print the sum (addition), multiply, subtract, divide and remainder of
 //        two numbers , takes two numbers as input
 
-        int number, number1, number2, number3; //define two integer variables
 
         System.out.println("Calculator:");
         try {
@@ -207,7 +209,7 @@ public class Main {
 
         try {
             isEven(number); // throws the answer
-        } catch (ArithmeticException e){
+        } catch (ArithmeticException e){ // gets the answer
             System.out.println(e.getMessage());
         } catch (Exception e){
             System.out.println("An error occurred . . .");
@@ -217,25 +219,51 @@ public class Main {
 //        8 - Java program to convert the temperature in Centigrade to Fahrenheit
         System.out.println("temperature converter:");
 
-        float centigrade;
 
-        System.out.println("enter the temperature in centigrade:");
-        centigrade = input.nextFloat();
+        try {
+            System.out.println("enter the temperature in centigrade:");
+            centigrade = input.nextFloat();
 
-        System.out.println("the temperature converted to fahrenheit is: " + (centigrade * 1.8f + 32));
+            System.out.println("the temperature converted to fahrenheit is: " + (centigrade * 1.8f + 32));
+
+        }catch (InputMismatchException e){
+            System.out.println("This is not a number");
+        } catch (Exception e){
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine(); // flush the input
+        }
 
 //        9.Write a Java program that takes a string and a number from the user,then prints the
 //        character in the given index.
         System.out.println("character finder");
 
-        System.out.println("enter a sentence:");
-        input.nextLine();
-        String sentence = input.nextLine();
+        try {
+            System.out.println("enter a sentence:");
+            String sentence = input.nextLine();
 
-        System.out.println("enter index number: ");
-        int index = input.nextInt();
+            System.out.println("enter index number: ");
+            int index = input.nextInt();
 
-        System.out.println("the character at index " + index + " is " + sentence.toCharArray()[index]);
+            if (index < 0){
+                throw new ArithmeticException("Index can not be less than zero (<0)");
+            }
+            System.out.println("the character at index " + index + " is " + sentence.charAt(index));
+
+        } catch (InputMismatchException e){
+            System.out.println("This is not a number");
+        } catch (NoSuchElementException e){
+            System.out.println(e.getMessage());
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("The index is more than the length of the sentence (out of bound)");
+        } catch (Exception e){
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine();
+        }
+
 
 //        10. Write a Java program to print the area and perimeter of a rectangle.
         System.out.println("perimeter of a rectangle finder");
