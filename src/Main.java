@@ -515,19 +515,30 @@ public class Main {
 //        entered by the user.
 
         System.out.println("char 'a' appearance count:");
-
         System.out.println("enter a sentence:");
-        sentence = input.nextLine();
+        try {
+            sentence = input.nextLine();
+            char[] sentenceArray = sentence.toCharArray(); // moved here for performance reasons (out from the loop)
+            int numberOfA = 0;
 
-        int numberOfA = 0;
-        for (int i = 0; i < sentence.length(); i++) {
-            if (sentence.toCharArray()[i] == 'a') {
-                numberOfA++;
+            for (int i = 0; i <= sentence.length() - 1; i++) {
+                if (sentenceArray[i] == 'a') {
+                    numberOfA++;
+                }
             }
-        }
 
-        System.out.println("the number of 'a' in the sentence is " + numberOfA);
-    }
+            System.out.println("the number of 'a' in the sentence is " + numberOfA);
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Out of bound"); // since the program has a hard-coded index, such exception is unlikely
+        } catch (NoSuchElementException e) {
+            System.out.println("Enter a valid sentence");
+        } catch (Exception e) {
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } // no finally is required, as the input will be destroyed once main method has exited
+
+    }//end of main
 
     //Q7, throwing the exception up the stack. make users handle it themselves
     public static void isEven(int number) throws ArithmeticException {
@@ -565,4 +576,4 @@ public class Main {
         // by the Java Garbage Collector
 
     }
-}
+} // end of class
