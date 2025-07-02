@@ -244,7 +244,7 @@ public class Main {
              sentence = input.nextLine();
 
             System.out.println("enter index number: ");
-            int index = input.nextInt();
+            int index = input.nextInt(); // after this one, flush
 
             if (index < 0){
                 throw new ArithmeticException("Index can not be less than zero (<0)");
@@ -261,7 +261,7 @@ public class Main {
             System.out.println("An error occurred . . .");
             System.out.println(e.getMessage());
         } finally {
-            input.nextLine();
+            input.nextLine(); // use after nextInt();
         }
 
 
@@ -269,17 +269,29 @@ public class Main {
         System.out.println("perimeter of a rectangle finder");
 
         double width, height;
-        System.out.println("enter width:");
-        width = input.nextDouble();
 
-        System.out.println("enter height:");
-        height = input.nextDouble();
+        try {
+            System.out.println("enter width:");
+            width = input.nextDouble();
 
-        area = width * height;
-        System.out.println("area is = " + area);
+            System.out.println("enter height:");
+            height = input.nextDouble();
 
-        perimeter = 2 * (width + height);
-        System.out.println("perimeter is = " + perimeter);
+            area = width * height;
+            System.out.println("area is = " + area);
+
+            perimeter = 2 * (width + height);
+            System.out.println("perimeter is = " + perimeter);
+
+        } catch (InputMismatchException e){
+            System.out.println("This is not a number");
+        } catch (Exception e){
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine();
+        }
+
 
 //        11. Write a Java program to compare two numbers.
         System.out.println("compare two numbers helper: ");
