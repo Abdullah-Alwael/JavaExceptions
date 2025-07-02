@@ -8,7 +8,7 @@ public class Main {
         int number, number1, number2, number3, number4; //define two integer variables
         float centigrade;
 
-//TODO add try catch to all Questions, if else use throw throws, do not use both throws and throw in the same method
+// add try catch to all Questions, if else use throw throws, do not use both throws and throw in the same method
 
 //        1. Write a Java program to print the sum (addition), multiply, subtract, divide and remainder of
 //        two numbers , takes two numbers as input
