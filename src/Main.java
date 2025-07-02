@@ -173,9 +173,7 @@ public class Main {
         } catch (Exception e) {
             System.out.println("An error occurred . . .");
             System.out.println(e.getMessage());
-        } finally {
-            input.nextLine();
-        }
+        }// flushing an already taken EOL by previous input.nextLine(); is not required, since it was already consumed
 
 
 //        7 - Java program to check whether the given number is even or odd
