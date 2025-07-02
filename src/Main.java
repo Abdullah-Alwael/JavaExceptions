@@ -28,9 +28,9 @@ public class Main {
 
         } catch (InputMismatchException e) {
             System.out.println("This is not a number, try again...");
-        } catch (ArithmeticException e){
+        } catch (ArithmeticException e) {
             System.out.println("Cannot divide by zero (0)");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("An error occurred");
             System.out.println(e.getMessage());
         } finally {
@@ -43,7 +43,6 @@ public class Main {
 //        10.
 
 
-
         System.out.println("Multiplication table");
 
         try {
@@ -51,11 +50,11 @@ public class Main {
             number = input.nextInt();
 
             for (int i = 1; i <= 10; i++) {
-                System.out.println(number+" x "+i + " = " + (number*i));
+                System.out.println(number + " x " + i + " = " + (number * i));
             }
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("This is not a number");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("An error occurred . . .");
             System.out.println(e.getMessage());
         } finally {
@@ -67,19 +66,19 @@ public class Main {
 
         double radius, perimeter, area; // define 3 variables
 
-        try{
+        try {
             System.out.println("enter the radius of a circle: ");
             radius = input.nextDouble();
 
-            perimeter = 2*Math.PI*radius;
-            System.out.println("perimeter is: "+ perimeter);
+            perimeter = 2 * Math.PI * radius;
+            System.out.println("perimeter is: " + perimeter);
 
-            area = Math.PI*radius*radius;
-            System.out.println("area is: "+ area);
+            area = Math.PI * radius * radius;
+            System.out.println("area is: " + area);
 
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("This is not a number");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("An error occurred . . .");
             System.out.println(e.getMessage());
         } finally {
@@ -108,11 +107,11 @@ public class Main {
             average = sum / rounds; // possible divide by 0!
             System.out.println("The average is = " + average);
 
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("This is not a number");
-        } catch (ArithmeticException e){
+        } catch (ArithmeticException e) {
             System.out.println("Cannot divide by zero (0)");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("An error occurred . . .");
             System.out.println(e.getMessage());
         } finally {
@@ -120,11 +119,10 @@ public class Main {
         }
 
 
-
 //            5. Write a Java program that accepts three integers as input, adds the first two integers
 //            together, and then determines whether the sum is equal to the third integer.
 
-            System.out.println("find equal third:");
+        System.out.println("find equal third:");
 
         try {
             System.out.println("enter first number: ");
@@ -136,16 +134,16 @@ public class Main {
             System.out.println("enter third number: ");
             number3 = input.nextInt();
 
-            if ((number1+number2) == number3){
+            if ((number1 + number2) == number3) {
                 System.out.println("they are equal");
             } else {
                 throw new ArithmeticException("they are not equal"); // using throw instead of println();
             }
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("This is not a number");
-        } catch (ArithmeticException e){
+        } catch (ArithmeticException e) {
             System.out.println(e.getMessage());
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("An error occurred . . .");
             System.out.println(e.getMessage());
         } finally {
@@ -156,21 +154,21 @@ public class Main {
 //        6. Write a Java program to reverse a word.
 
         System.out.println("word reverse program:");
-        try{
+        try {
             System.out.println("enter a word to reverse");
             String word = input.nextLine();
 
             System.out.println("the reverse is: ");
-            for (int i = word.length()-1; i >= 0; i--) {
+            for (int i = word.length() - 1; i >= 0; i--) {
                 System.out.print(word.toCharArray()[i]);
             }
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             System.out.println("Enter a valid word");
             System.out.println(e.getMessage());
-        }  catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Out of bound!");
             System.out.println(e.getMessage());
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("An error occurred . . .");
             System.out.println(e.getMessage());
         } finally {
@@ -182,19 +180,39 @@ public class Main {
         System.out.println();
         System.out.println("even odd finder:");
 
-        do {
-            System.out.println("enter a number");
-            number = input.nextInt();
-            if (number <= 0) {
-                System.out.println("the number cant be negative or zero, try again");
-            }
-        }while (number <= 0);
 
-        if (number%2 == 0){
-            System.out.println(number +" is even");
-        } else {
-            System.out.println(number +" is odd");
+        do {
+            System.out.println("enter a number (greater than 0)");
+
+            try {
+                number = input.nextInt();
+
+                if (number <= 0) {
+                    throw new ArithmeticException("the number cant be negative or zero, try again");
+                } else {
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("This is not a number, try again...");
+            } catch (ArithmeticException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println("An error occurred . . .");
+                System.out.println(e.getMessage());
+            } finally {
+                input.nextLine();
+            }
+
+        } while (true);
+
+        try {
+            isEven(number); // throws the answer
+        } catch (ArithmeticException e){
+            System.out.println(e.getMessage());
+        } catch (Exception e){
+            System.out.println("An error occurred . . .");
         }
+
 
 //        8 - Java program to convert the temperature in Centigrade to Fahrenheit
         System.out.println("temperature converter:");
@@ -204,7 +222,7 @@ public class Main {
         System.out.println("enter the temperature in centigrade:");
         centigrade = input.nextFloat();
 
-        System.out.println("the temperature converted to fahrenheit is: "+(centigrade*1.8f+32));
+        System.out.println("the temperature converted to fahrenheit is: " + (centigrade * 1.8f + 32));
 
 //        9.Write a Java program that takes a string and a number from the user,then prints the
 //        character in the given index.
@@ -217,7 +235,7 @@ public class Main {
         System.out.println("enter index number: ");
         int index = input.nextInt();
 
-        System.out.println("the character at index "+index + " is "+sentence.toCharArray()[index]);
+        System.out.println("the character at index " + index + " is " + sentence.toCharArray()[index]);
 
 //        10. Write a Java program to print the area and perimeter of a rectangle.
         System.out.println("perimeter of a rectangle finder");
@@ -229,11 +247,11 @@ public class Main {
         System.out.println("enter height:");
         height = input.nextDouble();
 
-        area = width*height;
-        System.out.println("area is = "+area);
+        area = width * height;
+        System.out.println("area is = " + area);
 
-        perimeter = 2*(width+height);
-        System.out.println("perimeter is = "+perimeter);
+        perimeter = 2 * (width + height);
+        System.out.println("perimeter is = " + perimeter);
 
 //        11. Write a Java program to compare two numbers.
         System.out.println("compare two numbers helper: ");
@@ -244,32 +262,32 @@ public class Main {
         System.out.println("enter second number:");
         number2 = input.nextInt();
 
-        if (number1!=number2){
-            System.out.println(number1 +" != "+number2);
+        if (number1 != number2) {
+            System.out.println(number1 + " != " + number2);
         } else {
-            System.out.println(number1 +" = "+number2);
+            System.out.println(number1 + " = " + number2);
         }
-        if (number1<number2){
-            System.out.println(number1 + " < "+number2);
+        if (number1 < number2) {
+            System.out.println(number1 + " < " + number2);
         } else {
-            System.out.println(number1 + " >= "+number2);
+            System.out.println(number1 + " >= " + number2);
         }
-        if (number1<=number2){
-            System.out.println(number1 + " <= "+number2);
+        if (number1 <= number2) {
+            System.out.println(number1 + " <= " + number2);
         } else {
-            System.out.println(number1 + " > "+number2);
+            System.out.println(number1 + " > " + number2);
         }
 
 //        12. Write a Java program to convert seconds to hours, minutes and seconds.
         System.out.println("seconds calculator:");
         System.out.println("enter the number of seconds to convert to hours, minutes and remaining seconds ");
         int seconds = input.nextInt();
-        int hours = seconds/3600; // correct calculation
-        seconds-=hours*3600;
-        int minutes = (seconds/60); // needs to factor out the hours first, correct calculation
-        seconds -= minutes*60; // needs to factor out the minutes, correct calculation
+        int hours = seconds / 3600; // correct calculation
+        seconds -= hours * 3600;
+        int minutes = (seconds / 60); // needs to factor out the hours first, correct calculation
+        seconds -= minutes * 60; // needs to factor out the minutes, correct calculation
 
-        System.out.println("it is = "+hours+ " hours and "+minutes+ " minutes and "+seconds);
+        System.out.println("it is = " + hours + " hours and " + minutes + " minutes and " + seconds);
 
 //        13. Write a Java program that accepts four integers from the user and prints equal if all
 //        four are equal, and not equal otherwise.
@@ -290,7 +308,7 @@ public class Main {
         int number4 = input.nextInt();
 
 
-        if (number1 == number2 && number1 == number3 && number1 == number4){
+        if (number1 == number2 && number1 == number3 && number1 == number4) {
             System.out.println("They are equal");
         } else {
             System.out.println("They are not equal");
@@ -303,7 +321,7 @@ public class Main {
         System.out.println("enter a number: ");
         number = input.nextInt();
 
-        if (number == 0 ){
+        if (number == 0) {
             System.out.println("number is zero");
         } else if (number > 0) {
             System.out.println("number is positive");
@@ -321,10 +339,10 @@ public class Main {
         do {
             System.out.println("enter a number (to stop enter -1)");
             number = input.nextInt();
-            if (number == -1){
+            if (number == -1) {
                 break;
             }
-            if (number == 0){
+            if (number == 0) {
                 zeros++;
             } else if (number > 0) {
                 positive++;
@@ -333,9 +351,9 @@ public class Main {
             }
         } while (true);
 
-        System.out.println("the number of zeros is "+zeros);
-        System.out.println("the number of positives is " +positive);
-        System.out.println("the number of negatives is "+negative);
+        System.out.println("the number of zeros is " + zeros);
+        System.out.println("the number of positives is " + positive);
+        System.out.println("the number of negatives is " + negative);
 
 //        16 - Write a program that prompts the user to input an integer and then outputs the
 //        number with the digits reversed.
@@ -345,7 +363,7 @@ public class Main {
 
         StringBuilder reverseNumber = new StringBuilder(String.valueOf(number));
 
-        System.out.println("The reverse is "+reverseNumber.reverse());
+        System.out.println("The reverse is " + reverseNumber.reverse());
 
         // second solution to Q16:
 
@@ -353,12 +371,12 @@ public class Main {
         double numberTemp;
 
         do {
-            numberTemp = (double) number /10;
-            number /=10;
-            numberTemp -=number;
+            numberTemp = (double) number / 10;
+            number /= 10;
+            numberTemp -= number;
             numberTemp *= 10;
             System.out.print(Math.round(numberTemp));
-        }while (number != 0);
+        } while (number != 0);
         System.out.println();
 
 //        17 - Write a program to enter the numbers till the user wants and at the end the
@@ -372,17 +390,17 @@ public class Main {
             System.out.println("enter a number");
             number = input.nextInt();
 
-            if (firstRun){
+            if (firstRun) {
                 largest = number;
                 smallest = number;
                 firstRun = false;
             }
 
-            if (number > largest){
+            if (number > largest) {
                 largest = number;
             }
 
-            if (number < smallest){
+            if (number < smallest) {
                 smallest = number;
             }
 
@@ -391,8 +409,8 @@ public class Main {
             cont = input.nextLine();
         } while (cont.equals("yes"));
 
-        System.out.println("the largest number is "+largest);
-        System.out.println("the smallest number is "+smallest);
+        System.out.println("the largest number is " + largest);
+        System.out.println("the smallest number is " + smallest);
 
 //        18 - Determine and print the number of times the character ‘a’ appears in the input
 //        entered by the user.
@@ -404,11 +422,18 @@ public class Main {
 
         int numberOfA = 0;
         for (int i = 0; i < sentence.length(); i++) {
-            if (sentence.toCharArray()[i] == 'a'){
+            if (sentence.toCharArray()[i] == 'a') {
                 numberOfA++;
             }
         }
 
-        System.out.println("the number of 'a' in the sentence is "+numberOfA);
+        System.out.println("the number of 'a' in the sentence is " + numberOfA);
+    }
+    public static void isEven(int number) throws ArithmeticException{
+        if (number % 2 == 0) {
+            throw new ArithmeticException(number + " is even");
+        } else {
+            throw new ArithmeticException(number + " is odd");
+        }
     }
 }
