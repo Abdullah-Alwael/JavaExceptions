@@ -211,7 +211,7 @@ public class Main {
             System.out.println(e.getMessage());
         } catch (Exception e) {
             System.out.println("An error occurred . . .");
-        }
+        } // no input was taken here so no finally
 
 
 //        8 - Java program to convert the temperature in Centigrade to Fahrenheit
