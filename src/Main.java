@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int number, number1, number2, number3; //define two integer variables
+        int number, number1, number2, number3, number4; //define two integer variables
         float centigrade;
 
 //TODO add try catch to all Questions, if else use throw throws, do not use both throws and throw in the same method
@@ -371,7 +371,7 @@ public class Main {
             number3 = input.nextInt();
 
             System.out.println("enter a forth number");
-            int number4 = input.nextInt();
+            number4 = input.nextInt();
 
 
             if (number1 == number2 && number1 == number3 && number1 == number4) {
