@@ -8,7 +8,7 @@ public class Main {
         int number, number1, number2, number3; //define two integer variables
         float centigrade;
 
-//TODO add try catch to all Questions, if else use throw throws
+//TODO add try catch to all Questions, if else use throw throws, do not use both throws and throw in the same method
 
 //        1. Write a Java program to print the sum (addition), multiply, subtract, divide and remainder of
 //        two numbers , takes two numbers as input
@@ -338,7 +338,7 @@ public class Main {
             seconds = initialSeconds;
 
             hours = seconds / 3600; // correct calculation
-            seconds -= hours * 3600;
+            seconds -= hours * 3600; // is exactly seconds = seconds - hours
             minutes = (seconds / 60); // needs to factor out the hours first, correct calculation
             seconds -= minutes * 60; // needs to factor out the minutes, correct calculation
 
@@ -360,24 +360,32 @@ public class Main {
 
         System.out.println("four equals finder:");
 
+        try {
+            System.out.println("enter a number");
+            number1 = input.nextInt();
 
-        System.out.println("enter a number");
-        number1 = input.nextInt();
+            System.out.println("enter a second number");
+            number2 = input.nextInt();
 
-        System.out.println("enter a number");
-        number2 = input.nextInt();
+            System.out.println("enter a third number number");
+            number3 = input.nextInt();
 
-        System.out.println("enter a number");
-        number3 = input.nextInt();
-
-        System.out.println("enter a number");
-        int number4 = input.nextInt();
+            System.out.println("enter a forth number");
+            int number4 = input.nextInt();
 
 
-        if (number1 == number2 && number1 == number3 && number1 == number4) {
-            System.out.println("They are equal");
-        } else {
-            System.out.println("They are not equal");
+            if (number1 == number2 && number1 == number3 && number1 == number4) {
+                System.out.println("They are equal");
+            } else {
+                System.out.println("They are not equal");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("This is not a number, try again later ...");
+        } catch (Exception e) {
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine();
         }
 
 //        14. Write a Java program that reads an integer and check whether it is negative, zero, or
@@ -496,6 +504,7 @@ public class Main {
         System.out.println("the number of 'a' in the sentence is " + numberOfA);
     }
 
+    //Q7
     public static void isEven(int number) throws ArithmeticException {
         if (number % 2 == 0) {
             throw new ArithmeticException(number + " is even");
