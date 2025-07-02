@@ -238,10 +238,10 @@ public class Main {
 //        9.Write a Java program that takes a string and a number from the user,then prints the
 //        character in the given index.
         System.out.println("character finder");
-
+        String sentence;
         try {
             System.out.println("enter a sentence:");
-            String sentence = input.nextLine();
+             sentence = input.nextLine();
 
             System.out.println("enter index number: ");
             int index = input.nextInt();
