@@ -93,18 +93,31 @@ public class Main {
         String cont;
         int rounds = 0;
 
-        do {
-            System.out.println("enter an integer");
-            number = input.nextInt();
-            sum += number;
-            rounds++;
-            System.out.println("continue? yes/no");
-            input.nextLine();
-            cont = input.nextLine();
-        } while (cont.equals("yes"));
+        try {
+            do {
+                System.out.println("enter an integer");
+                number = input.nextInt();
+                sum += number;
+                rounds++;
+                System.out.println("continue? yes/no");
+                input.nextLine();
+                cont = input.nextLine();
+            } while (cont.equals("yes"));
 
-        average = sum / rounds;
-        System.out.println("The average is = " + average);
+            average = sum / rounds; // possible divide by 0!
+            System.out.println("The average is = " + average);
+
+        } catch (InputMismatchException e){
+            System.out.println("This is not a number");
+        } catch (ArithmeticException e){
+            System.out.println("Cannot divide by zero (0)");
+        } catch (Exception e){
+            System.out.println("An error occurred . . .");
+            System.out.println(e.getMessage());
+        } finally {
+            input.nextLine(); // flush the input
+        }
+
 
 
 //            5. Write a Java program that accepts three integers as input, adds the first two integers
