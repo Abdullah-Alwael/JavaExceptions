@@ -396,24 +396,36 @@ public class Main {
 
 //        15.Write a program to enter the numbers till the user wants and at the end it
 //        should display the count of positive, negative and zeros entered (End loop use -1 ,
-//                Don’t count -1).
+//                Don’t count last end loop -1).
 
         System.out.println("finding sign numbers count:");
         int positive = 0, negative = 0, zeros = 0;
 
         do {
             System.out.println("enter a number (to stop enter -1)");
-            number = input.nextInt();
-            if (number == -1) {
-                break;
+            try {
+                number = input.nextInt();
+
+                if (number == -1) {
+                    break;
+                }
+                if (number == 0) {
+                    zeros++;
+                } else if (number > 0) {
+                    positive++;
+                } else {
+                    negative++;
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("This is not a number, try again ...");
+            } catch (Exception e) {
+                System.out.println("An error occurred . . .");
+                System.out.println(e.getMessage());
+            } finally {
+                input.nextLine(); // flush the input to prevent further exceptions by the same loop when taking next int
             }
-            if (number == 0) {
-                zeros++;
-            } else if (number > 0) {
-                positive++;
-            } else {
-                negative++;
-            }
+
         } while (true);
 
         System.out.println("the number of zeros is " + zeros);
@@ -495,7 +507,7 @@ public class Main {
         System.out.println("the number of 'a' in the sentence is " + numberOfA);
     }
 
-    //Q7
+    //Q7, throwing the exception up the stack. make users handle it themselves
     public static void isEven(int number) throws ArithmeticException {
         if (number % 2 == 0) {
             throw new ArithmeticException(number + " is even");
