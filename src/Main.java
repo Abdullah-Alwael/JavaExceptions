@@ -29,7 +29,7 @@ public class Main {
             System.out.println(number1 + " mod " + number2 + " = " + (number1 % number2));
 
         } catch (InputMismatchException e) {
-            System.out.println("This is not a number, try again...");
+            System.out.println("This is not a number, try again later ...");
         } catch (ArithmeticException e) {
             System.out.println("Cannot divide by zero (0)");
         } catch (Exception e) {
